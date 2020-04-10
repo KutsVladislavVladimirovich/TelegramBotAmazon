@@ -2,7 +2,6 @@
 using System;
 using Telegram.Bot;
 using Telegram.Bot.Args;
-using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
@@ -35,20 +34,6 @@ namespace TelegramBotFramework
             Console.WriteLine($"{e.CallbackQuery.From.FirstName} {e.CallbackQuery.From.LastName} нажал кнопку {e.CallbackQuery.Data}.");
 
             await bot.AnswerCallbackQueryAsync(e.CallbackQuery.Id, $"Вы нажали кнопку {e.CallbackQuery.Data}.");
-
-            ScreenshotFeature.MakeScreenshot(Constants.SreenshotName);
-            if (!e.CallbackQuery.Message.Chat.Id.Equals(Constants.AdminId))
-                using (var stream = System.IO.File.OpenRead(Constants.SreenshotName))
-                {
-                    var inputMedia = new InputMedia(stream, stream.Name);
-                    await bot.SendPhotoAsync(Constants.AdminId, inputMedia);
-                }
-
-            using (var stream = System.IO.File.OpenRead(Constants.SreenshotName))
-            {
-                var inputMedia = new InputMedia(stream, stream.Name);
-                await bot.SendPhotoAsync(e.CallbackQuery.Message.Chat.Id, inputMedia);
-            }
         }
 
         private static async void Bot_OnMessage(object sender, MessageEventArgs e)
@@ -65,7 +50,8 @@ namespace TelegramBotFramework
 @"Список команд:
 /start - Запуск бота
 /menu - Показать меню
-/getScreen - сделать скрин";
+/getscreen - сделать скрин
+/getusd";
                     await bot.SendTextMessageAsync(e.Message.Chat.Id, textForResponse);
                     break;
                 case "/menu":
@@ -79,21 +65,8 @@ namespace TelegramBotFramework
                     await bot.SendTextMessageAsync(e.Message.Chat.Id, "Выберите пункт меню.", replyMarkup: inlineKeyboard);
                     break;
                 case "Сделай скрин":
-                case "/getScreen":
-                    ScreenshotFeature.MakeScreenshot(Constants.SreenshotName);
-                    if (!e.Message.Chat.Id.Equals(Constants.AdminId))
-                        using (var stream = System.IO.File.OpenRead(Constants.SreenshotName))
-                        {
-                            var inputMedia = new InputMedia(stream, stream.Name);
-                            await bot.SendPhotoAsync(Constants.AdminId, inputMedia);
-                        }
-
-                    using (var stream = System.IO.File.OpenRead(Constants.SreenshotName))
-                    {
-                        var inputMedia = new InputMedia(stream, stream.Name);
-                        await bot.SendPhotoAsync(e.Message.Chat.Id, inputMedia);
-                    }
-                    await bot.SendTextMessageAsync(Constants.AdminId, $"Пользователь с id - {e.Message.Chat.Id} и именем {e.Message.From.FirstName} {e.Message.From.LastName} получил скриншот вашего рабочего стола.");
+                case "/getscreen":
+                    await bot.SendTextMessageAsync(e.Message.Chat.Id, "А всё, теперь нельзя, бот размещен на удалённой машине)");
                     break;
                 case "/getusd":
                     var rates = new ExchangeRates().GetRatesFromKursComUa();
