@@ -57,9 +57,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiUrls.cs" />
+    <Compile Include="ApiActions\ApiUrls.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="ExchangeRates.cs" />
+    <Compile Include="ApiActions\ExchangeRates.cs" />
     <Compile Include="Garbage\CommentedCode.cs" />
     <Compile Include="Models\KursComUaModel.cs" />
     <Compile Include="Program.cs" />

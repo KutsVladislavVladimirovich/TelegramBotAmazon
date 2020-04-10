@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TelegramBotFramework
+namespace TelegramBotFramework.ApiActions
 {
     internal class ApiUrls
     {

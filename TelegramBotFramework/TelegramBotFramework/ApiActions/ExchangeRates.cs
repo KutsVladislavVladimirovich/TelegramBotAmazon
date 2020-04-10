@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using TelegramBotFramework.Models;
 
-namespace TelegramBotFramework
+namespace TelegramBotFramework.ApiActions
 {
     public class ExchangeRates
     {
