@@ -1,0 +1,13 @@
+A:\Apps\TelegramBotFramework\TelegramBotFramework\bin\Release\TelegramBotFramework.exe.config
+A:\Apps\TelegramBotFramework\TelegramBotFramework\bin\Release\TelegramBotFramework.exe
+A:\Apps\TelegramBotFramework\TelegramBotFramework\bin\Release\TelegramBotFramework.pdb
+A:\Apps\TelegramBotFramework\TelegramBotFramework\bin\Release\ApiAiSDK.dll
+A:\Apps\TelegramBotFramework\TelegramBotFramework\bin\Release\Newtonsoft.Json.dll
+A:\Apps\TelegramBotFramework\TelegramBotFramework\bin\Release\System.Drawing.Common.dll
+A:\Apps\TelegramBotFramework\TelegramBotFramework\bin\Release\Telegram.Bot.dll
+A:\Apps\TelegramBotFramework\TelegramBotFramework\bin\Release\Newtonsoft.Json.xml
+A:\Apps\TelegramBotFramework\TelegramBotFramework\bin\Release\Telegram.Bot.xml
+A:\Apps\TelegramBotFramework\TelegramBotFramework\obj\Release\TelegramBotFramework.csproj.CoreCompileInputs.cache
+A:\Apps\TelegramBotFramework\TelegramBotFramework\obj\Release\TelegramBotFramework.csproj.CopyComplete
+A:\Apps\TelegramBotFramework\TelegramBotFramework\obj\Release\TelegramBotFramework.exe
+A:\Apps\TelegramBotFramework\TelegramBotFramework\obj\Release\TelegramBotFramework.pdb
