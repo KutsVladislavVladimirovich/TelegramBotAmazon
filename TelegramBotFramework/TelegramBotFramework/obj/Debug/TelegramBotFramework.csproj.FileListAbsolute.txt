@@ -40,3 +40,7 @@ A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.csproj.CopyComplete
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.exe
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.pdb
+A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\TelegramBotFramework.exe.manifest
+A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\TelegramBotFramework.application
+A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.exe.manifest
+A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.application
