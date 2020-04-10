@@ -57,10 +57,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiActions\ApiUrls.cs" />
+    <Compile Include="ApiActions\ApiUrls\ApiUrl.cs" />
+    <Compile Include="ApiActions\Weather\Gismeteo.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="ApiActions\ExchangeRates.cs" />
+    <Compile Include="ApiActions\ExchangeRates\DollarExchange.cs" />
     <Compile Include="Garbage\CommentedCode.cs" />
+    <Compile Include="Models\MeteoUaModel.cs" />
     <Compile Include="Models\KursComUaModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

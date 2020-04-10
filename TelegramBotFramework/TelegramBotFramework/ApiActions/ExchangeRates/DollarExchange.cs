@@ -1,16 +1,17 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Net;
+using System.Text.RegularExpressions;
+using TelegramBotFramework.ApiActions.ApiUrls;
 using TelegramBotFramework.Models;
 
-namespace TelegramBotFramework.ApiActions
+namespace TelegramBotFramework.ApiActions.ExchangeRates
 {
-    public class ExchangeRates
+    public class DollarExchange
     {
-        private readonly System.Net.WebClient _webClient = new System.Net.WebClient();
+        private readonly WebClient _webClient = new WebClient();
         public KursComUaModel GetRatesFromKursComUa()
         {
-            var page = _webClient.DownloadString(new ApiUrls().KursComUa());
+            var page = _webClient.DownloadString(ApiUrl.KursComUa());
             var matches = Regex.Split(page, @"course_first"">(.*)<div");
-            //var matches2 = Regex.Split(page, @"""csvw:value"" : ""(.*)"",");
 
             return new KursComUaModel
             {

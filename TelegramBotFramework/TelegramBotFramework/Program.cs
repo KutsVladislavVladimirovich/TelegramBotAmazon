@@ -4,7 +4,8 @@ using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
-using TelegramBotFramework.ApiActions;
+using TelegramBotFramework.ApiActions.ExchangeRates;
+using TelegramBotFramework.ApiActions.Weather;
 
 namespace TelegramBotFramework
 {
@@ -14,8 +15,6 @@ namespace TelegramBotFramework
         private static ApiAi apiAi;
         static void Main(string[] args)
         {
-            //var dollarInfo = new ExchangeRates().GetRatesFromKursComUa();
-
             bot = new TelegramBotClient(Constants.BotToken);
             apiAi = new ApiAi(new AIConfiguration(Constants.SmartTalkToken, SupportedLanguage.Russian));
 
@@ -34,7 +33,10 @@ namespace TelegramBotFramework
         {
             Console.WriteLine($"{e.CallbackQuery.From.FirstName} {e.CallbackQuery.From.LastName} нажал кнопку {e.CallbackQuery.Data}.");
 
-            await bot.AnswerCallbackQueryAsync(e.CallbackQuery.Id, $"Вы нажали кнопку {e.CallbackQuery.Data}.");
+            if (e.CallbackQuery.Data.Equals("Погода"))
+
+
+                await bot.AnswerCallbackQueryAsync(e.CallbackQuery.Id, $"Вы нажали кнопку {e.CallbackQuery.Data}.");
         }
 
         private static async void Bot_OnMessage(object sender, MessageEventArgs e)
@@ -51,29 +53,36 @@ namespace TelegramBotFramework
 @"Список команд:
 /start - Запуск бота
 /menu - Показать меню
-/getscreen - сделать скрин
-/getusd";
+/getscreen - Сделать скрин
+/getusd - Курс доллара";
                     await bot.SendTextMessageAsync(e.Message.Chat.Id, textForResponse);
                     break;
                 case "/menu":
-                    var inlineKeyboard = new InlineKeyboardMarkup(new[]
+                    var markup = new ReplyKeyboardMarkup(new[]
                     {
-                        new []
-                        {
-                            InlineKeyboardButton.WithCallbackData("Сделай скриншот!")
-                        }
-                    });
-                    await bot.SendTextMessageAsync(e.Message.Chat.Id, "Выберите пункт меню.", replyMarkup: inlineKeyboard);
+                        new KeyboardButton("Курс Доллара"),
+                        new KeyboardButton("Погода"),
+                    }, oneTimeKeyboard: true);
+
+                    await bot.SendTextMessageAsync(e.Message.Chat.Id, "Выберите пункт меню.", replyMarkup: markup);
                     break;
                 case "Сделай скрин":
                 case "/getscreen":
                     await bot.SendTextMessageAsync(e.Message.Chat.Id, "А всё, теперь нельзя, бот размещен на удалённой машине)");
                     break;
+                case "Курс Доллара":
                 case "/getusd":
-                    var rates = new ExchangeRates().GetRatesFromKursComUa();
-                    var dollarInfo = $"Курс Доллара: Продажа - {rates.Sale}. Покупка - {rates.Buy}. Коммерческий - {rates.Commercial}. Национальный Банк Украины - {rates.Nbu}.";
+                    var rates = new DollarExchange().GetRatesFromKursComUa();
+                    var dollarInfo = $"Курс Доллара🏧\r\nПокупка - {rates.Buy}\r\nПродажа - {rates.Sale}\r\nКоммерческий - {rates.Commercial}\r\nНациональный Банк Украины - {rates.Nbu}";
 
                     await bot.SendTextMessageAsync(e.Message.Chat.Id, dollarInfo);
+                    break;
+                case "Погода":
+                case "/getweather":
+                    var weather = new Gismeteo().GetWeatherInfo();
+                    var todayInfo = $"Утро - {weather.Morning}🌏\r\nДень - {weather.Day}🌝\r\nВечер - {weather.Evening}🌓\r\nНочь - {weather.Night}🌚";
+
+                    await bot.SendTextMessageAsync(e.Message.Chat.Id, todayInfo);
                     break;
                 default:
                     var response = apiAi.TextRequest(e.Message.Text);
