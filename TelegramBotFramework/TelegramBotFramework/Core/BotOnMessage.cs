@@ -18,7 +18,7 @@ namespace TelegramBotFramework.Core
         {
             Console.WriteLine($"{e.CallbackQuery.From.FirstName} {e.CallbackQuery.From.LastName} нажал кнопку {e.CallbackQuery.Data}.");
 
-            //await Configuration.Bot.AnswerCallbackQueryAsync(e.CallbackQuery.Id, $"Вы нажали кнопку {e.CallbackQuery.Data}.");
+            await Configuration.Bot.AnswerCallbackQueryAsync(e.CallbackQuery.Id, $"Вы нажали кнопку {e.CallbackQuery.Data}.");
             if (Regex.IsMatch(e.CallbackQuery.Data, @"\d{1,15} [U|u][S|s][D|d]"))
                 await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, DollarExchange.CalculateDollarByDigit(decimal.Parse(e.CallbackQuery.Data.Split(' ')[0])));
         }
