@@ -1,10 +1,17 @@
 ﻿namespace TelegramBotFramework.Models
 {
-    public class MeteoUaModel
+    internal class MeteoUaModel
     {
-        public string Night { get; set; }
-        public string Morning { get; set; }
-        public string Day { get; set; }
-        public string Evening { get; set; }
+        internal Temperature Temperature { get; set; }
+        internal string Now { get; set; }
+
+    }
+
+    internal class Temperature
+    {
+        internal string Night { get; set; }
+        internal string Morning { get; set; }
+        internal string Day { get; set; }
+        internal string Evening { get; set; }
     }
 }

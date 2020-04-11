@@ -27,6 +27,8 @@ C:\Users\kutsv\Desktop\TelegramBotFramework\TelegramBotFramework\obj\Debug\Teleg
 C:\Users\kutsv\Desktop\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.exe
 C:\Users\kutsv\Desktop\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.pdb
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\TelegramBotFramework.exe.config
+A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\TelegramBotFramework.exe.manifest
+A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\TelegramBotFramework.application
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\TelegramBotFramework.exe
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\TelegramBotFramework.pdb
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\ApiAiSDK.dll
@@ -35,12 +37,10 @@ A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\Telegram.Bot.dll
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\Newtonsoft.Json.xml
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\Telegram.Bot.xml
-A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.csprojAssemblyReference.cache
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.csproj.CoreCompileInputs.cache
+A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.exe.manifest
+A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.application
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.csproj.CopyComplete
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.exe
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.pdb
-A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\TelegramBotFramework.exe.manifest
-A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\bin\Debug\TelegramBotFramework.application
-A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.exe.manifest
-A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.application
+A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.csprojAssemblyReference.cache

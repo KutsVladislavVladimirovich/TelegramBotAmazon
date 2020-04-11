@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace TelegramBotFramework
+namespace TelegramBotFramework.Core
 {
     public static class ScreenshotFeature
     {

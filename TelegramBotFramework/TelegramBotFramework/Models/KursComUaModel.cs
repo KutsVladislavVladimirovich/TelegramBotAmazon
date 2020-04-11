@@ -1,10 +1,10 @@
 ﻿namespace TelegramBotFramework.Models
 {
-    public class KursComUaModel
+    internal class KursComUaModel
     {
-        public string Sale { get; set; }
-        public string Buy { get; set; }
-        public string Commercial { get; set; }
-        public string Nbu{ get; set; }
+        internal string Sale { get; set; }
+        internal string Buy { get; set; }
+        internal string Commercial { get; set; }
+        internal string Nbu{ get; set; }
     }
 }
