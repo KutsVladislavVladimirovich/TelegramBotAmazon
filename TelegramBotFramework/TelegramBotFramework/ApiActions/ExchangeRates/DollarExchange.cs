@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net;
 using System.Text.RegularExpressions;
 using TelegramBotFramework.ApiActions.ApiUrls;
@@ -34,7 +35,10 @@ namespace TelegramBotFramework.ApiActions.ExchangeRates
         {
             var rates = GetRatesFromKursComUa();
 
-            return $"{digit} USD = {digit * Convert.ToDecimal(rates.Nbu.Replace('.', ','))} UAH.";
+            var convertedData = (digit * Convert.ToDecimal(rates.Nbu.Replace('.', ','))).ToString(CultureInfo.InvariantCulture);
+            var result = !convertedData[convertedData.Length - 3].Equals(',') ? convertedData : convertedData.Insert(convertedData.Length - 3, ".");
+
+            return $"{digit} USD = {result} UAH.";
         }
     }
 }
