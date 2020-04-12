@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -8,12 +10,13 @@ using TelegramBotFramework.Models;
 
 namespace TelegramBotFramework.ApiActions.ExchangeRates
 {
-    internal class DollarExchange
+    internal class CurrenciesExchange
     {
         private readonly WebClient _webClient = new WebClient();
+
         internal KursComUaModel GetRatesFromKursComUa()
         {
-            var page = _webClient.DownloadString(ApiUrl.KursComUa());
+            var page = _webClient.DownloadString(ApiUrl.KursComUa);
             var matches = Regex.Split(page, @"course_first"">(.*)<div");
 
             return new KursComUaModel
@@ -41,5 +44,33 @@ namespace TelegramBotFramework.ApiActions.ExchangeRates
 
             return $"{digit} USD = {result} UAH";
         }
+
+        internal string CalculateCurrency(decimal digit,string ccy)
+        {
+            ccy = ccy.ToLower();
+            var rate = GetPrivatBankExchange().First(r => r.Ccy.ToLower().Equals(ccy));
+
+            var convertedData = $"{rate.Sale * digit}";
+            var result = convertedData.Any(s => s.Equals('.'))
+                ? convertedData
+                : convertedData.Insert(convertedData.Length - 3, ".").Split('.')[0];
+
+            return $"{digit} {ccy.ToUpper()} = {result} {rate.BaseCcy}";
+        }
+
+        internal string GetExchangeRates()
+        {
+            var result = string.Empty;
+            var rates = GetPrivatBankExchange();
+            foreach (var rate in rates)
+            {
+                result += $"{rate.Ccy} - {rate.BaseCcy}\r\nПокупа {rate.Buy}\r\nПродажа {rate.Sale}\r\n\r\n";
+            }
+
+            return result.TrimEnd();
+        }
+
+        private List<PrivatBankModel> GetPrivatBankExchange() =>
+            JsonConvert.DeserializeObject<List<PrivatBankModel>>(_webClient.DownloadString(ApiUrl.PrivatBank));
     }
 }
