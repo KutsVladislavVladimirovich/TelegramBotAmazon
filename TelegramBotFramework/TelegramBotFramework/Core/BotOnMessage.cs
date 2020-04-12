@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.Enums;
@@ -103,7 +104,11 @@ namespace TelegramBotFramework.Core
             if (e.Message == null || !e.Message.Type.Equals(MessageType.Text))
             {
                 if (e.Message != null && e.Message.Type.Equals(MessageType.Photo))
-                    await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, $"Вау {e.Message.From.FirstName}! Это очень классная фотка!");
+                {
+                    await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, $"Вау, {e.Message.From.FirstName}! Это очень классная фотка!");
+                    await Configuration.Bot.SendPhotoAsync(Constants.AdminId, e.Message.Photo.Last().FileId);
+                    await Configuration.Bot.SendTextMessageAsync(Constants.AdminId,$"Пользователь {e.Message.From.Username} прислал фото боту.");
+                }
 
                 return;
             }
