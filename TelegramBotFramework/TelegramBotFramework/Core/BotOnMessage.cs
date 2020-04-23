@@ -31,7 +31,6 @@ namespace TelegramBotFramework.Core
 
             switch (e.CallbackQuery.Data)
             {
-
                 case "Меню погоды":
                     var weatherKeyboard = new InlineKeyboardMarkup(new[]
                     {
@@ -44,11 +43,9 @@ namespace TelegramBotFramework.Core
                     await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Выберите населенный пункт.", replyMarkup: weatherKeyboard);
                     break;
                 case "Погода в Днепре":
-                case "/getweatherdnipro":
                     await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, Weather.GetDniproWeather());
                     break;
                 case "Погода в Новодонецком":
-                case "/getweathernovodonetskoe":
                     await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, Weather.GetNovodonetckoeWeather());
                     break;
                 case "Курс валют":
@@ -158,7 +155,7 @@ namespace TelegramBotFramework.Core
                     await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, "Выберите пункт меню.", replyMarkup: exchangeKeyboard);
                     break;
                 case "Текущая дата":
-                    await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, DateTime.Now.ToString("f", FormatProvider));
+                    await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, DateTime.Now.AddHours(3).ToString("f", FormatProvider));
                     break;
                 default:
                     await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, ApiAiBot.Speech(e.Message.Text));
