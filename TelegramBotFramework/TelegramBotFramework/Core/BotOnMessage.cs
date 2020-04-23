@@ -19,29 +19,20 @@ namespace TelegramBotFramework.Core
         private static readonly IFormatProvider FormatProvider = new CultureInfo("ru-ru");
         internal static async void BotOnCallbackQuery(object sender, CallbackQueryEventArgs e)
         {
-            Console.WriteLine($"{e.CallbackQuery.From.FirstName} {e.CallbackQuery.From.LastName} нажал кнопку {e.CallbackQuery.Data}.");
+            //Console.WriteLine($"{e.CallbackQuery.From.FirstName} {e.CallbackQuery.From.LastName} нажал кнопку {e.CallbackQuery.Data}.");
 
             await Configuration.Bot.AnswerCallbackQueryAsync(e.CallbackQuery.Id, $"Вы нажали кнопку {e.CallbackQuery.Data}.");
+
             if (Regex.IsMatch(e.CallbackQuery.Data, @"\d{1,15} (?:[U|u][S|s][D|d]|[E|e][U|u][R|r]|[R|r][U|u][R|r])"))
             {
                 var text = e.CallbackQuery.Data.Split(' ');
                 await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, CurrenciesExchange.CalculateCurrency(decimal.Parse(text[0]), text[1]));
+
                 return;
             }
 
             switch (e.CallbackQuery.Data)
             {
-                case "Меню погоды":
-                    var weatherKeyboard = new InlineKeyboardMarkup(new[]
-                    {
-                        new []
-                        {
-                            InlineKeyboardButton.WithCallbackData("Погода в Днепре"),
-                            InlineKeyboardButton.WithCallbackData("Погода в Новодонецком")
-                        }
-                    });
-                    await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Выберите населенный пункт.", replyMarkup: weatherKeyboard);
-                    break;
                 case "Погода в Днепре":
                     await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, Weather.GetDniproWeather());
                     break;
@@ -94,6 +85,9 @@ namespace TelegramBotFramework.Core
                     await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Такой команды не знаю =(");
                     break;
             }
+
+            if (!e.CallbackQuery.From.Id.Equals(Constants.AdminId))
+                await Configuration.Bot.SendTextMessageAsync(Constants.AdminId, $"Пользователь {e.CallbackQuery.From.Username} с именем {e.CallbackQuery.From.FirstName} and id {e.CallbackQuery.From.Id} прислал сообщение боту с текстом - {e.CallbackQuery.Message}.");
         }
 
         internal static async void Bot_OnMessage(object sender, MessageEventArgs e)
@@ -104,18 +98,19 @@ namespace TelegramBotFramework.Core
                 {
                     await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, $"Вау, {e.Message.From.FirstName}! Это очень классная фотка!");
                     await Configuration.Bot.SendPhotoAsync(Constants.AdminId, e.Message.Photo.Last().FileId);
-                    await Configuration.Bot.SendTextMessageAsync(Constants.AdminId,$"Пользователь {e.Message.From.Username} прислал фото боту.");
+                    await Configuration.Bot.SendTextMessageAsync(Constants.AdminId, $"Пользователь {e.Message.From.Username} прислал фото боту.");
                 }
 
                 return;
             }
 
-            Console.WriteLine($"Contact with name {e.Message.From.FirstName} {e.Message.From.LastName} and id {e.Message.Chat.Id} send message with text '{e.Message.Text}'.");
+            //Console.WriteLine($"Contact with name {e.Message.From.FirstName} {e.Message.From.LastName} and id {e.Message.Chat.Id} send message with text '{e.Message.Text}'.");
 
             if (Regex.IsMatch(e.Message.Text, @"\d{1,15} (?:[U|u][S|s][D|d]|[E|e][U|u][R|r]|[R|r][U|u][R|r])"))
             {
                 var text = e.Message.Text.Split(' ');
                 await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, CurrenciesExchange.CalculateCurrency(decimal.Parse(text[0]), text[1]));
+
                 return;
             }
 
@@ -161,6 +156,9 @@ namespace TelegramBotFramework.Core
                     await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, ApiAiBot.Speech(e.Message.Text));
                     break;
             }
+
+            if (!e.Message.From.Id.Equals(Constants.AdminId))
+                await Configuration.Bot.SendTextMessageAsync(Constants.AdminId, $"Пользователь {e.Message.From.Username}, именем {e.Message.From.FirstName} и id {e.Message.From.Id} прислал сообщение боту с текстом - {e.Message.Text}.");
         }
     }
 }

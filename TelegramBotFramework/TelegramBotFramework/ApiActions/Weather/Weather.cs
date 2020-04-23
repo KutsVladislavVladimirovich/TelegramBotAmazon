@@ -22,7 +22,6 @@ namespace TelegramBotFramework.ApiActions.Weather
             return new MeteoUaModel
             {
                 Now = now.Groups[1].Value,
-                Cloud = Encoding.UTF8.GetString(Encoding.Default.GetBytes(cloud[3])),
                 Wind = Encoding.UTF8.GetString(Encoding.Default.GetBytes(wind[1])),
 
                 Temperature = new Temperature
@@ -31,6 +30,14 @@ namespace TelegramBotFramework.ApiActions.Weather
                     Morning = temperatures[13],
                     Day = temperatures[15],
                     Evening = temperatures[17]
+                },
+
+                Cloud = new Cloud
+                {
+                    Night = Encoding.UTF8.GetString(Encoding.Default.GetBytes(cloud[3])),
+                    Morning = Encoding.UTF8.GetString(Encoding.Default.GetBytes(cloud[7])),
+                    Day = Encoding.UTF8.GetString(Encoding.Default.GetBytes(cloud[11])),
+                    Evening = Encoding.UTF8.GetString(Encoding.Default.GetBytes(cloud[15])).Split('"')[0]
                 }
             };
         }
