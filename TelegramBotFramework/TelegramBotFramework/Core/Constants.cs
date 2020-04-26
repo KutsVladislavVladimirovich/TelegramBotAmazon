@@ -1,4 +1,6 @@
-﻿namespace TelegramBotFramework.Core
+﻿using System;
+
+namespace TelegramBotFramework.Core
 {
     public static class Constants
     {
@@ -8,5 +10,8 @@
         public const int BotId = 1241430852;
         public const int AdminId = 348553266;
         public const int AdminFriendId = 448833388;
+
+        public static string PathToDebug = $"{Environment.CurrentDirectory}//UserTodoModels";
+        public static string JsonFile = "TodoList.json";
     }
 }
