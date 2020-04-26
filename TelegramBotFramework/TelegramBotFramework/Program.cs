@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using TelegramBotFramework.ApiActions.ExchangeRates;
-using TelegramBotFramework.Core;
+﻿using TelegramBotFramework.Core;
 
 namespace TelegramBotFramework
 {

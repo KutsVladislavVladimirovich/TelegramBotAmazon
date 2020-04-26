@@ -19,8 +19,6 @@ namespace TelegramBotFramework.Core
         private static readonly IFormatProvider FormatProvider = new CultureInfo("ru-ru");
         internal static async void BotOnCallbackQuery(object sender, CallbackQueryEventArgs e)
         {
-            //Console.WriteLine($"{e.CallbackQuery.From.FirstName} {e.CallbackQuery.From.LastName} нажал кнопку {e.CallbackQuery.Data}.");
-
             await Configuration.Bot.AnswerCallbackQueryAsync(e.CallbackQuery.Id, $"Вы нажали кнопку {e.CallbackQuery.Data}.");
 
             if (Regex.IsMatch(e.CallbackQuery.Data, @"\d{1,15} (?:[U|u][S|s][D|d]|[E|e][U|u][R|r]|[R|r][U|u][R|r])"))
@@ -47,10 +45,7 @@ namespace TelegramBotFramework.Core
                     {
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("100 USD"),
-                            InlineKeyboardButton.WithCallbackData("700 USD"),
-                            InlineKeyboardButton.WithCallbackData("1000 USD"),
-                            InlineKeyboardButton.WithCallbackData("1200 USD")
+                            InlineKeyboardButton.WithCallbackData("100 USD"), InlineKeyboardButton.WithCallbackData("700 USD"), InlineKeyboardButton.WithCallbackData("1000 USD"), InlineKeyboardButton.WithCallbackData("1200 USD")
                         }
                     });
                     await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Выберите пункт или введите сумму + USD", replyMarkup: usdKeyboard);
@@ -60,10 +55,7 @@ namespace TelegramBotFramework.Core
                     {
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("100 EUR"),
-                            InlineKeyboardButton.WithCallbackData("700 EUR"),
-                            InlineKeyboardButton.WithCallbackData("1000 EUR"),
-                            InlineKeyboardButton.WithCallbackData("1200 EUR")
+                            InlineKeyboardButton.WithCallbackData("100 EUR"), InlineKeyboardButton.WithCallbackData("700 EUR"), InlineKeyboardButton.WithCallbackData("1000 EUR"), InlineKeyboardButton.WithCallbackData("1200 EUR")
                         }
                     });
                     await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Выберите пункт или введите сумму + EUR", replyMarkup: eurKeyboard);
@@ -73,10 +65,7 @@ namespace TelegramBotFramework.Core
                     {
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("100 RUR"),
-                            InlineKeyboardButton.WithCallbackData("700 RUR"),
-                            InlineKeyboardButton.WithCallbackData("1000 RUR"),
-                            InlineKeyboardButton.WithCallbackData("1200 RUR")
+                            InlineKeyboardButton.WithCallbackData("100 RUR"), InlineKeyboardButton.WithCallbackData("700 RUR"), InlineKeyboardButton.WithCallbackData("1000 RUR"), InlineKeyboardButton.WithCallbackData("1200 RUR")
                         }
                     });
                     await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Выберите пункт или введите сумму + USD", replyMarkup: rurKeyboard);
@@ -87,7 +76,7 @@ namespace TelegramBotFramework.Core
             }
 
             if (!e.CallbackQuery.From.Id.Equals(Constants.AdminId))
-                await Configuration.Bot.SendTextMessageAsync(Constants.AdminId, $"Пользователь {e.CallbackQuery.From.Username} с именем {e.CallbackQuery.From.FirstName} and id {e.CallbackQuery.From.Id} прислал сообщение боту с текстом - {e.CallbackQuery.Message}.");
+                await Configuration.Bot.SendTextMessageAsync(Constants.AdminId, $"Пользователь с именем {e.CallbackQuery.From.FirstName} {e.CallbackQuery.From.LastName} and id {e.CallbackQuery.From.Id} прислал сообщение боту с текстом - {e.CallbackQuery.Data}.");
         }
 
         internal static async void Bot_OnMessage(object sender, MessageEventArgs e)
@@ -104,8 +93,6 @@ namespace TelegramBotFramework.Core
                 return;
             }
 
-            //Console.WriteLine($"Contact with name {e.Message.From.FirstName} {e.Message.From.LastName} and id {e.Message.Chat.Id} send message with text '{e.Message.Text}'.");
-
             if (Regex.IsMatch(e.Message.Text, @"\d{1,15} (?:[U|u][S|s][D|d]|[E|e][U|u][R|r]|[R|r][U|u][R|r])"))
             {
                 var text = e.Message.Text.Split(' ');
@@ -119,9 +106,7 @@ namespace TelegramBotFramework.Core
                 case "/start":
                     var markup = new ReplyKeyboardMarkup(new[]
                     {
-                        new KeyboardButton("Меню валют"),
-                        new KeyboardButton("Меню погоды"),
-                        new KeyboardButton("Текущая дата")
+                        new KeyboardButton("Меню валют"), new KeyboardButton("Меню погоды"), new KeyboardButton("Текущая дата")
                     }, oneTimeKeyboard: true);
                     await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, "Вот всё что я умею)", replyMarkup: markup);
                     break;
@@ -130,8 +115,7 @@ namespace TelegramBotFramework.Core
                     {
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("Погода в Днепре"),
-                            InlineKeyboardButton.WithCallbackData("Погода в Новодонецком")
+                            InlineKeyboardButton.WithCallbackData("Погода в Днепре"), InlineKeyboardButton.WithCallbackData("Погода в Новодонецком")
                         }
                     });
                     await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, "Выберите населенный пункт.", replyMarkup: weatherKeyboard);
@@ -141,10 +125,7 @@ namespace TelegramBotFramework.Core
                     {
                         new []
                         {
-                            InlineKeyboardButton.WithCallbackData("Курс валют"),
-                            InlineKeyboardButton.WithCallbackData("UAH - USD"),
-                            InlineKeyboardButton.WithCallbackData("UAH - EUR"),
-                            InlineKeyboardButton.WithCallbackData("UAH - RUR")
+                            InlineKeyboardButton.WithCallbackData("Курс валют"), InlineKeyboardButton.WithCallbackData("UAH - USD"), InlineKeyboardButton.WithCallbackData("UAH - EUR"), InlineKeyboardButton.WithCallbackData("UAH - RUR")
                         }
                     });
                     await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, "Выберите пункт меню.", replyMarkup: exchangeKeyboard);
@@ -158,7 +139,7 @@ namespace TelegramBotFramework.Core
             }
 
             if (!e.Message.From.Id.Equals(Constants.AdminId))
-                await Configuration.Bot.SendTextMessageAsync(Constants.AdminId, $"Пользователь {e.Message.From.Username}, именем {e.Message.From.FirstName} и id {e.Message.From.Id} прислал сообщение боту с текстом - {e.Message.Text}.");
+                await Configuration.Bot.SendTextMessageAsync(Constants.AdminId, $"Пользователь с именем {e.Message.From.FirstName} {e.Message.From.LastName} и id {e.Message.From.Id} прислал сообщение боту с текстом - {e.Message.Text}.");
         }
     }
 }
