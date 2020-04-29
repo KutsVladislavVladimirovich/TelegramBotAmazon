@@ -31,7 +31,6 @@ namespace TelegramBotFramework.Core
                 return;
             }
 
-
             if (e.CallbackQuery.Data.StartsWith("Выполнить дело №"))
             {
                 var index = int.Parse(e.CallbackQuery.Data.Replace("Выполнить дело №", string.Empty)) - 1;
@@ -191,7 +190,7 @@ namespace TelegramBotFramework.Core
                 return;
             }
 
-            if (e.Message.Text.StartsWith("дело") || e.Message.Text.StartsWith("Дело"))
+            if (e.Message.Text.StartsWith("Дело ") || e.Message.Text.StartsWith("дело "))
             {
                 var todoList = new TodoList(e.Message.Chat.Id.ToString());
                 var todo = new TodoModel
@@ -242,7 +241,7 @@ namespace TelegramBotFramework.Core
                         }
                     });
                     await Configuration.Bot.SendTextMessageAsync(e.Message.Chat.Id, "Список дел пуст.", replyMarkup: clearLeadListKeyboard);
-                    
+
                     break;
                 case "Список дел":
                     var todoList = new TodoList(e.Message.Chat.Id.ToString());
