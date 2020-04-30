@@ -37,11 +37,28 @@ namespace TelegramBotFramework.Core.TodoFeature
             }
         }
 
+        public void ChangeIsDone(int index, bool status)
+        {
+            var listOfModels = GetTodoList().ToList();
+            listOfModels[index].IsDone = status;
+
+            SaveData(listOfModels.ToArray());
+        }
+
+        public void Add(TodoModel todoModel)
+        {
+            var listOfModels = GetTodoList().ToList();
+            listOfModels.Add(todoModel);
+
+            SaveData(listOfModels.ToArray());
+        }
+
         public void RemoveElement(int index)
         {
-            var models = GetTodoList();
-            models.ToList().RemoveAt(index);
-            SaveData(models.ToArray());
+            var listOfModels = GetTodoList().ToList();
+            listOfModels.RemoveAt(index);
+
+            SaveData(listOfModels.ToArray());
         }
 
         public void SaveData(TodoModel[] todoModel)
@@ -49,7 +66,7 @@ namespace TelegramBotFramework.Core.TodoFeature
             using (var writer = File.CreateText($"{_path}\\{Constants.JsonFile}"))
             {
                 var output = JsonConvert.SerializeObject(todoModel);
-                writer.Write(output.Replace(",null", string.Empty));
+                writer.Write(output);
             }
         }
 

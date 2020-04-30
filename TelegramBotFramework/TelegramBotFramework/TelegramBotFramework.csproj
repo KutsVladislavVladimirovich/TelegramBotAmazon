@@ -95,6 +95,7 @@
     <Compile Include="Core\DialogFlow\ApiAiBot.cs" />
     <Compile Include="Core\TodoFeature\TodoList.cs" />
     <Compile Include="Garbage\CommentedCode.cs" />
+    <Compile Include="Helpers\TodoHelper.cs" />
     <Compile Include="Models\MeteoUaModel.cs" />
     <Compile Include="Models\KursComUaModel.cs" />
     <Compile Include="Models\PrivatBankModel.cs" />
