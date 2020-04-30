@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
+using System.Linq;
 using TelegramBotFramework.Models;
 
 namespace TelegramBotFramework.Core.TodoFeature
@@ -34,6 +35,13 @@ namespace TelegramBotFramework.Core.TodoFeature
 
                 return JsonConvert.DeserializeObject<TodoModel[]>(fileText);
             }
+        }
+
+        public void RemoveElement(int index)
+        {
+            var models = GetTodoList();
+            models.ToList().RemoveAt(index);
+            SaveData(models.ToArray());
         }
 
         public void SaveData(TodoModel[] todoModel)

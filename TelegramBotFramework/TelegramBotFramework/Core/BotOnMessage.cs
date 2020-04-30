@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -63,6 +64,7 @@ namespace TelegramBotFramework.Core
             if (e.CallbackQuery.Data.StartsWith("Удалить дело №"))
             {
                 var todoList = new TodoList(e.CallbackQuery.From.Id.ToString());
+                todoList.RemoveElement(int.Parse(e.CallbackQuery.Data.Replace("Удалить дело №", string.Empty)) - 1);
                 var oldTodoLists = todoList.GetTodoList();
                 var index = int.Parse(e.CallbackQuery.Data.Replace("Удалить дело №", string.Empty)) - 1;
 
