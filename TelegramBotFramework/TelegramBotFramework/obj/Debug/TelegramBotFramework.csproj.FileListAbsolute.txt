@@ -43,4 +43,3 @@ A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.csproj.CopyComplete
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.exe
 A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.pdb
-A:\GitHub\TelegramBotAmazon\TelegramBotFramework\TelegramBotFramework\obj\Debug\TelegramBotFramework.csprojAssemblyReference.cache
