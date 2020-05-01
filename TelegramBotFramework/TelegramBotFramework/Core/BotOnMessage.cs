@@ -10,7 +10,6 @@ using TelegramBotFramework.ApiActions.Weather;
 using TelegramBotFramework.Core.DialogFlow;
 using TelegramBotFramework.Core.TodoFeature;
 using TelegramBotFramework.Helpers;
-using TelegramBotFramework.Models;
 
 namespace TelegramBotFramework.Core
 {
