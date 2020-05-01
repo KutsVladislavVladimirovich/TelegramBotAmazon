@@ -103,7 +103,7 @@ namespace TelegramBotFramework.Helpers
                 {
                     new []
                     {
-                        InlineKeyboardButton.WithCallbackData(actualTodoList[i].IsDone.Equals(true) ? $"Дело №{i + 1}✅" : $"Дело №{i + 1}❌"),
+                        InlineKeyboardButton.WithCallbackData(actualTodoList[i].IsDone.Equals(true) ? $"Дело №{i + 1}✅" : $"Дело №{i + 1}⭕️"),
                         InlineKeyboardButton.WithCallbackData($"Удалить дело №{i + 1}")
                     }
                 }));
