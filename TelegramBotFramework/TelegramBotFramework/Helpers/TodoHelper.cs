@@ -48,7 +48,7 @@ namespace TelegramBotFramework.Helpers
                 list.ChangeIsDone(index - 1, false);
                 SendTodoList(e.CallbackQuery.From.Id.ToString());
             }
-            else if (e.CallbackQuery.Data.EndsWith("❌"))
+            else if (e.CallbackQuery.Data.EndsWith("⭕️"))
             {
                 var index = int.Parse(e.CallbackQuery.Data[6].ToString());
                 var list = new TodoList(e.CallbackQuery.From.Id.ToString());
