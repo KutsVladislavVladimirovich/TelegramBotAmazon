@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 using ApiAiSDK;
 using Telegram.Bot;
 
@@ -12,6 +14,7 @@ namespace TelegramBotFramework.Core
         {
             if (Bot == null && ApiAi == null)
             {
+                SetRuCulture();
                 Bot = new TelegramBotClient(Constants.BotToken);
                 ApiAi = new ApiAi(new AIConfiguration(Constants.SmartTalkToken, SupportedLanguage.Russian));
 
@@ -27,6 +30,15 @@ namespace TelegramBotFramework.Core
                 Console.WriteLine($"Bot is already initialized.");
 
             Console.ReadKey();
+        }
+
+        private static void SetRuCulture()
+        {
+            var cultureInfo = new CultureInfo("ru-RU");
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
         }
     }
 }

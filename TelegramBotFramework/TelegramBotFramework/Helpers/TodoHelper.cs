@@ -8,6 +8,8 @@ namespace TelegramBotFramework.Helpers
 {
     public static class TodoHelper
     {
+        private static string Done = "Выполнено👍";
+        private static string NotDone = "Не выполнено👎";
         public static void MessageTodoList(string senderId, string message)
         {
             if (message.StartsWith("Дело ") || message.StartsWith("дело "))
@@ -65,7 +67,9 @@ namespace TelegramBotFramework.Helpers
             await Configuration.Bot.SendTextMessageAsync(senderId, "Список дел:");
 
             for (var i = 0; i < actualTodoList.Length; i++)
-                await Configuration.Bot.SendTextMessageAsync(senderId, $"{actualTodoList[i].Text}\r\nДело добавлено - {actualTodoList[i].CreationDate}", replyMarkup: new InlineKeyboardMarkup(new[]
+            {
+                var doneStatus = actualTodoList[i].IsDone.Equals(true) ? Done : NotDone;
+                await Configuration.Bot.SendTextMessageAsync(senderId, $"{actualTodoList[i].Text}\r\nДело добавлено - {actualTodoList[i].CreationDate}\r\n{doneStatus}", replyMarkup: new InlineKeyboardMarkup(new[]
                 {
                     new []
                     {
@@ -73,6 +77,8 @@ namespace TelegramBotFramework.Helpers
                         InlineKeyboardButton.WithCallbackData($"Удалить дело №{i + 1}")
                     }
                 }));
+
+            }
 
             await Configuration.Bot.SendTextMessageAsync(senderId, "Если хотите добавить дело напишите 'дело' и текст.");
         }

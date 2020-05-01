@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TelegramBotFramework.exe" size="32736">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TelegramBotFramework.exe" size="33248">
       <assemblyIdentity name="TelegramBotFramework" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>tXh4LG+FF1UDEroyYDw/l3A+V4fA4CWGXYGgzHXCm/s=</dsig:DigestValue>
+        <dsig:DigestValue>mCwVYEJhcCD0nzPyg5+0HMCtIW4Ui20Zh1eHvVOEDCs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
