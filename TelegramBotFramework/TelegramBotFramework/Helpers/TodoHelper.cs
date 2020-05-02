@@ -70,9 +70,15 @@ namespace TelegramBotFramework.Helpers
                     return;
                 }
                 await Configuration.Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Вы уверенны?", replyMarkup: new InlineKeyboardMarkup(new[] 
-                    { new [] { InlineKeyboardButton.WithCallbackData($"Да, удалить дело №{e.CallbackQuery.Data.Replace("Удалить дело №", string.Empty)}") } }));
+                    { new []
+                        {
+                            InlineKeyboardButton.WithCallbackData($"Да, удалить дело №{e.CallbackQuery.Data.Replace("Удалить дело №", string.Empty)}"),
+                            InlineKeyboardButton.WithCallbackData($"Нет, не удалять дело №{e.CallbackQuery.Data.Replace("Удалить дело №", string.Empty)}")
+                        } }));
 
             }
+            else if (e.CallbackQuery.Data.StartsWith("Нет, не удалять дело №"))
+                SendTodoList(e.CallbackQuery.From.Id.ToString());
         }
 
         public static async void SendTodoList(string senderId)
